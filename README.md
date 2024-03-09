@@ -1,4 +1,11 @@
 # Java-Lab
- 
-First week: Somehow operations to get familiar with java.
-Second week: Get to know about classes, I quinda like it. 
+
+## Things Learned
+1. Basic operations in Java, operators, primary structures
+2. Objects and classes
+
+## File Structure
+- `x.1` - Compulsory (Laboratory)
+- `x.2` - Homework
+- `x.3` - Bonus
+  (where 'x' represents the number of the laboratory)
