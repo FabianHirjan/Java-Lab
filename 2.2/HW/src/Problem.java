@@ -104,5 +104,18 @@ public class Problem {
     private double distance(Vehicle v, Client c) {
         return Math.sqrt(Math.pow(v.getX() - c.getX(), 2) + Math.pow(v.getY() - c.getY(), 2));
     }
-
+    /**
+     * Returneaza vectorul de depouri
+     * @return array ul de depots.
+     */
+    public Depot[] getDepots() {
+        return depots;
+    }
+    /**
+     * Returneaza vectorul de clienti
+     * @return array ul de clienti.
+     */
+    public Client[] getClients() {
+        return clients;
+    }
 }

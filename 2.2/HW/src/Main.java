@@ -4,6 +4,7 @@ import java.time.LocalTime;
  */
 public class Main {
     public static void main(String[] args) {
+        /*
         Depot d = new Depot(0, "Marfar", 5, 10);
         Depot f = new Depot(0, "Traine", 5, 10);
         Drone Drona = new Drone(d, "Iao", 2, 100);
@@ -28,7 +29,15 @@ public class Main {
         for(int i = 0; i<vec.length; i++)
             if(vec[i]!=null)
             System.out.println(vec[i].getName());
-         */
+
         p.assign();
+        */
+
+        Simulator SS = new Simulator(20, 20);
+        SS.generateClientsAndDepots();
+        SS.solveProblem();
+        SS.displayMap();
+
+
     }
 }
