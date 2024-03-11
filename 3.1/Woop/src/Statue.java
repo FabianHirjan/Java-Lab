@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
-public class Statue extends Attraction implements Visitable, Payable {
+public class Statue extends Attraction implements Visitable {
     private Map<LocalDate, TimeInterval> timetable = new HashMap<>();
     private double ticketPrice;
     private String name;
@@ -14,10 +14,6 @@ public class Statue extends Attraction implements Visitable, Payable {
     }
     public void setTimetable(Map<LocalDate, TimeInterval> timetable) {
         this.timetable = timetable;
-    }
-    @Override
-    public double getTicketPrice() {
-        return ticketPrice;
     }
 
     public Statue(String name, Map<LocalDate, TimeInterval> timetable, double ticketPrice) {
