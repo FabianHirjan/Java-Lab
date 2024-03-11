@@ -3,6 +3,7 @@
 ## Things Learned
 1. Basic operations in Java, operators, primary structures
 2. Objects and classes
+3. Interfaces
 
 ## File Structure
 - `x.1` - Compulsory (Laboratory)
