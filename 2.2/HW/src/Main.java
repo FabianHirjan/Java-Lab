@@ -7,13 +7,13 @@ public class Main {
         /*
         Depot d = new Depot(0, "Marfar", 5, 10);
         Depot f = new Depot(0, "Traine", 5, 10);
-        Drone Drona = new Drone(d, "Iao", 2, 100);
+        Drone Drona = new Drone(d, "Zbrr", 2, 100);
         Truck Camion = new Truck(f, "Scania", 3, 70);
-        Truck Coco = new Truck(f, "Muie", 3, 70);
+        Truck Coco = new Truck(f, "RR", 3, 70);
         Client c = new Client("Ionescu", LocalTime.NOON, LocalTime.MIDNIGHT, Client.ClientType.REGULAR, 0, 0, 0);
         Client c1 = new Client("Popescu", LocalTime.NOON, LocalTime.MIDNIGHT, Client.ClientType.REGULAR, 5,5, 6);
-        Client c2 = new Client("Iao", LocalTime.NOON, LocalTime.MIDNIGHT, Client.ClientType.REGULAR, 4,3, 7);
-        Client c3 = new Client("Dumio", LocalTime.NOON, LocalTime.MIDNIGHT, Client.ClientType.REGULAR, 1,2, 0);
+        Client c2 = new Client("Fabean", LocalTime.NOON, LocalTime.MIDNIGHT, Client.ClientType.REGULAR, 4,3, 7);
+        Client c3 = new Client("Dumi", LocalTime.NOON, LocalTime.MIDNIGHT, Client.ClientType.REGULAR, 1,2, 0);
         d.addCars(Camion);
         d.addCars(Coco);
         f.addCars(Drona);

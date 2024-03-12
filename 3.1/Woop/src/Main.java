@@ -19,7 +19,9 @@ public class Main {
         Museum museum = new Museum("TZU",concertTimetable, 300);
         System.out.println(museum.getOpeningHour(concertDate));
 
-        Visitable[] arr = {museum, concert};
+        System.out.println(museum.getTicketPrice());
+
+        Attraction[] arr = {museum, concert};
     }
 
 }

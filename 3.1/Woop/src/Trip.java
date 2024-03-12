@@ -37,6 +37,17 @@ class Trip {
     public String getCity() {
         return cityName;
     }
+// instanceof
+    public List<Attraction> isFree() {
+        List<Attraction> hopa = new ArrayList<>();
+        for (Attraction a : attractions) {
+            if (Visitable.class.isAssignableFrom(a.getClass()) && !(Payable.class.isAssignableFrom(a.getClass()))){
+                hopa.add(a);
+            }
+        }
+        return hopa;
+    }
+
 
     @Override
     public String toString() {

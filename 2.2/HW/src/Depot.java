@@ -79,8 +79,8 @@ public class Depot {
      * @param d Depozitul cu care se compară.
      * @return True dacă numele depozitelor sunt identice, altfel False.
      */
-    public boolean Equals(Depot d){
-        return this.getName().equals(d.getName());
+    public boolean equals(Object d){
+
     }
     /**
      * Obține coordonata x a locației depozitului.
