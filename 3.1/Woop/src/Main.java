@@ -22,6 +22,10 @@ public class Main {
         System.out.println(museum.getTicketPrice());
 
         Attraction[] arr = {museum, concert};
+
+        int nbObjects = 1_000_000;
+
+
     }
 
 }
