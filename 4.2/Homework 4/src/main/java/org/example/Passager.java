@@ -1,3 +1,5 @@
+package org.example;
+
 class Passenger extends Person {
     private boolean matched;
 

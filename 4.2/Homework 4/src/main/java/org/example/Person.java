@@ -1,3 +1,6 @@
+package org.example;
+
+
 // Person class representing individuals
 class Person {
     private String name;
