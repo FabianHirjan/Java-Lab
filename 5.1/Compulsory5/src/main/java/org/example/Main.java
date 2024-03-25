@@ -2,15 +2,7 @@ package org.example;
 
 import com.github.javafaker.Faker;
 import shell.Shell;
-
-import java.io.EOFException;
 import java.io.IOException; // Pentru IOException
-import java.nio.file.Path; // Pentru clasa Path
-import java.nio.file.Paths; // Pentru metoda Paths.get()
-import java.util.Arrays;
-import java.util.List; // Pentru interfața List
-import java.util.Scanner;
-import java.util.stream.Collectors; // Pentru metoda Collectors.toList()
 import java.util.stream.IntStream;
 
 
