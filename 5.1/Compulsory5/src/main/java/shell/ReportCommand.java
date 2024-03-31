@@ -34,17 +34,14 @@ class ReportCommand implements Command {
     }
 
     private void generateHtmlReport(Path directoryPath) {
-        // 1. Inițializați motorul Velocity
         VelocityEngine velocityEngine = new VelocityEngine();
         velocityEngine.init();
 
-        // 2. Încărcați template-ul
         velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "file");
         velocityEngine.setProperty("file.resource.loader.path", Paths.get("").toAbsolutePath().toString() + "/resources");
 
-        Template template = velocityEngine.getTemplate("exampleTemplate.html");
+        Template template = velocityEngine.getTemplate("exampleTemplate.vm");
 
-        // 3. Creați contextul și adăugați datele (lista de fișiere)
         VelocityContext context = new VelocityContext();
         List<String> files = null;
         try {
@@ -57,12 +54,10 @@ class ReportCommand implements Command {
         }
         context.put("files", files);
 
-        // 4. Procesați template-ul
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
 
-        // 5. Scrieți rezultatul într-un fișier HTML
-        String reportFilePath = "report.html"; // Specificați calea și numele fișierului raportului HTML
+        String reportFilePath = "resources/report.html";
         try (FileWriter fileWriter = new FileWriter(reportFilePath)) {
             fileWriter.write(writer.toString());
             System.out.println("Report generated successfully: " + reportFilePath);
@@ -71,7 +66,6 @@ class ReportCommand implements Command {
             e.printStackTrace();
         }
 
-        // 6. Deschideți raportul HTML într-un browser web (opțional)
         openInBrowser(reportFilePath);
     }
 
