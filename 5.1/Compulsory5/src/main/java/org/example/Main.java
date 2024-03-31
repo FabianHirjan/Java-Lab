@@ -33,7 +33,7 @@ public class Main {
             throw new RuntimeException(e);
         }*/
 
-        Shell shell = new Shell();
+        Shell shell = new Shell(o);
         shell.run();
 
         try{

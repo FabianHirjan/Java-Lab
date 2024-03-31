@@ -2,19 +2,25 @@ package shell;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.example.Operations;
+
 public class Shell {
     private Map<String, Command> commands;
-    private DocumentManager documentManager;
+    private Operations operations;
+    private Map<String, List<String>> repository;
 
-    public Shell() {
+    public Shell(Operations operations) {
+        this.operations = operations;
         commands = new HashMap<>();
-        documentManager = new DocumentManager();
-        commands.put("add-document", new AddDocumentCommand(documentManager));
-        commands.put("open-file", new OpenDocumentCommand(documentManager));
+        DocumentManager DocumentManager = new DocumentManager();
+        commands.put("add-document", new AddDocumentCommand(DocumentManager));
+        commands.put("open-file", new OpenDocumentCommand(DocumentManager));
         commands.put("report", new ReportCommand());
+        commands.put("export-json", new ExportJSONCommand(operations, repository)); // Adaugă comanda export-json
     }
 
     public void run() throws IOException {

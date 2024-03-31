@@ -1,43 +1,49 @@
 package org.example;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Operations {
 
     private String masterPath = "/Users/fabian-andreihirjan/Desktop/Path";
-    public void make(Person[] persons) throws Exception {
+
+    public void make(Person[] persons) throws IOException {
         List<Path> paths = Arrays.stream(persons)
-                .map(person -> Paths.get("/Users/fabian-andreihirjan/Desktop/Path/" + person.name()))
+                .map(person -> Paths.get(masterPath, person.name()))
                 .collect(Collectors.toList());
+
         for (Path path : paths) {
             if (Files.notExists(path)) {
                 Files.createDirectory(path);
             } else {
-                throw new Exception("The file already exists");
+                throw new IOException("The directory already exists: " + path);
             }
         }
     }
 
-    public void makeDir() throws Exception{
+    public void makeDir() throws IOException {
         Path path = Paths.get(masterPath);
-        if(Files.notExists(path)){
+        if (Files.notExists(path)) {
             Files.createDirectory(path);
-        }
-        else {
-            throw new Exception("The file already exists");
+        } else {
+            throw new IOException("The directory already exists: " + path);
         }
     }
 
-    public void displayDirectoryContent(String directoryPath) throws Exception {
+    public void displayDirectoryContent(String directoryPath) throws IOException {
         Path path = Paths.get(directoryPath);
         if (!Files.exists(path) || !Files.isDirectory(path)) {
-            throw new Exception("The file doesn't exist");
+            throw new IOException("The directory does not exist: " + directoryPath);
         }
 
         System.out.println("Content of directory " + path + ":");
@@ -68,6 +74,13 @@ public class Operations {
         }
     }
 
+    public void exportRepositoryToJSON(String outputPath, Map<String, List<String>> repository) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
+        File outputFile = new File(outputPath);
+        objectMapper.writeValue(outputFile, repository);
 
+        System.out.println("Repository exported to JSON successfully: " + outputPath);
+    }
 }
