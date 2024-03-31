@@ -5,6 +5,9 @@ import shell.Shell;
 import java.io.IOException; // Pentru IOException
 import java.util.stream.IntStream;
 
+import java.io.StringWriter;
+
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -29,6 +32,7 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }*/
+
         Shell shell = new Shell();
         shell.run();
 
@@ -39,6 +43,7 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
 
         /*
         Scanner scanner = new Scanner(System.in);

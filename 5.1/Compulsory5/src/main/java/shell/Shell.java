@@ -14,6 +14,7 @@ public class Shell {
         documentManager = new DocumentManager();
         commands.put("add-document", new AddDocumentCommand(documentManager));
         commands.put("open-file", new OpenDocumentCommand(documentManager));
+        commands.put("report", new ReportCommand());
     }
 
     public void run() throws IOException {
