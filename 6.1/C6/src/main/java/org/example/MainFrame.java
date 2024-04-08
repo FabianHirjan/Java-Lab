@@ -1,37 +1,39 @@
 package org.example;
 
+import javax.swing.JFrame;
+
+import java.awt.BorderLayout;
+
 import javax.swing.*;
-import java.awt.*;
 
 public class MainFrame extends JFrame {
-    public MainFrame() {
-        super("My Drawing Application");
+    ConfigPanel configPanel;
+    ControlPanel controlPanel;
+    DrawingPanel canvas;
 
-        JPanel configPanel = new JPanel();
-
-        DrawingPanel drawingPanel = new DrawingPanel();
-
-        JPanel controlPanel = new JPanel();
-        JButton loadButton = new JButton("Load");
-        JButton saveButton = new JButton("Save");
-        JButton exitButton = new JButton("Exit");
-        controlPanel.add(loadButton);
-        controlPanel.add(saveButton);
-        controlPanel.add(exitButton);
-
-        this.setLayout(new BorderLayout());
-
-        this.add(configPanel, BorderLayout.NORTH);
-        this.add(drawingPanel, BorderLayout.CENTER);
-        this.add(controlPanel, BorderLayout.SOUTH);
-
-        this.setSize(600, 400);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public DrawingPanel getCanvas() {
+        return canvas;
     }
 
-    public static void main(String[] args) {
-        MainFrame frame = new MainFrame();
-        frame.setVisible(true);
+    public MainFrame() {
+        super("My Drawing Application");
+        init();
+    }
+
+    private void init() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // create the components
+        configPanel = new ConfigPanel(this);
+        canvas = new DrawingPanel(this);
+        controlPanel = new ControlPanel(this);
+
+        add(canvas, BorderLayout.CENTER); // this is BorderLayout.CENTER
+        add(configPanel, BorderLayout.NORTH); // this is BorderLayout.NORTH
+        add(controlPanel, BorderLayout.SOUTH); // this is BorderLayout.SOUTH
+
+        // invoke the layout manager
+
+        pack();
     }
 }

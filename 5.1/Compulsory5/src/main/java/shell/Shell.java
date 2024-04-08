@@ -20,7 +20,6 @@ public class Shell {
         commands.put("add-document", new AddDocumentCommand(DocumentManager));
         commands.put("open-file", new OpenDocumentCommand(DocumentManager));
         commands.put("report", new ReportCommand());
-        commands.put("export-json", new ExportJSONCommand(operations, repository)); // Adaugă comanda export-json
     }
 
     public void run() throws IOException {
