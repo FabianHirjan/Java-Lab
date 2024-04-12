@@ -22,17 +22,13 @@ public class MainFrame extends JFrame {
 
     private void init() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        // create the components
         configPanel = new ConfigPanel(this);
         canvas = new DrawingPanel(this);
         controlPanel = new ControlPanel(this);
 
-        add(canvas, BorderLayout.CENTER); // this is BorderLayout.CENTER
-        add(configPanel, BorderLayout.NORTH); // this is BorderLayout.NORTH
-        add(controlPanel, BorderLayout.SOUTH); // this is BorderLayout.SOUTH
-
-        // invoke the layout manager
+        add(canvas, BorderLayout.CENTER);
+        add(configPanel, BorderLayout.NORTH);
+        add(controlPanel, BorderLayout.SOUTH);
 
         pack();
     }

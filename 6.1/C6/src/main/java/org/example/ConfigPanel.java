@@ -18,7 +18,6 @@ public class ConfigPanel extends JPanel {
         label = new JLabel("Grid size: ");
         spinnerX = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
         spinnerY = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
-        // TODO
 
         add(label); // JPanel uses FlowLayout by default
         add(spinnerX);

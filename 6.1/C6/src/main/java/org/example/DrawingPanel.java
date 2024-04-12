@@ -32,7 +32,7 @@ public class DrawingPanel extends JPanel {
     }
 
     public BufferedImage getImage() {
-        return image; // Assuming 'image' is your BufferedImage object
+        return image;
     }
 
     private void createOffscreenImage() {
@@ -90,7 +90,6 @@ public class DrawingPanel extends JPanel {
             g.drawLine(x1, y1, x2, y2);
         }
 
-        // intersections
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 int x = padX + col * cellWidth;
@@ -221,7 +220,6 @@ public class DrawingPanel extends JPanel {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 if (stones[row][col]) {
-                    // Convert row and col to actual x and y positions
                     int x = padX + col * cellWidth;
                     int y = padY + row * cellHeight;
                     redStonePositions.add(new Point(x, y));
@@ -237,15 +235,9 @@ public class DrawingPanel extends JPanel {
         return new GameState(redStonePositions, blueStonePositions);
     }
     public void loadGameState(GameState gameState) {
-        // Aici trebuie să restaurați starea jocului în funcție de informațiile din obiectul GameState
-        // De exemplu, puteți actualiza listele de pietre roșii și albastre cu cele din GameState
-        List<Point> redStones = gameState.getRedStones();
-        List<Point> blueStones = gameState.getBlueStones();
 
-        // După ce ați actualizat starea jocului, redesenați panoul pentru a reflecta schimbările
         repaint();
     }
 
 
 }
-

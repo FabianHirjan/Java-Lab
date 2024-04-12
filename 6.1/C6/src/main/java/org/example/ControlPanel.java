@@ -12,8 +12,8 @@ public class ControlPanel extends JPanel {
     final MainFrame frame;
 
     private JButton exitButton = new JButton("Exit");
-    private JButton saveButton = new JButton("Save"); // Assuming this is for game state
-    private JButton loadButton = new JButton("Load"); // Assuming this is for game state
+    private JButton saveButton = new JButton("Save");
+    private JButton loadButton = new JButton("Load");
     private JButton resetButton = new JButton("Reset");
     private JButton saveImg = new JButton("Save IMG");
 
@@ -23,9 +23,7 @@ public class ControlPanel extends JPanel {
     }
 
     private void init() {
-        setLayout(new GridLayout(1, 5)); // Adjusted for the new button
-
-        // Adding buttons to the panel
+        setLayout(new GridLayout(1, 5));
         add(loadButton);
         add(saveButton);
         add(resetButton);
@@ -34,17 +32,14 @@ public class ControlPanel extends JPanel {
 
         // Setting up button actions
         exitButton.addActionListener(this::exitGame);
-        saveButton.addActionListener(this::saveGame); // Placeholder for actual implementation
-        loadButton.addActionListener(this::loadGame); // Placeholder for actual implementation
+        saveButton.addActionListener(this::saveGame);
+        loadButton.addActionListener(this::loadGame);
         resetButton.addActionListener(this::resetGame);
-        saveImg.addActionListener(this::saveImage); // Corrected to call saveImage method
+        saveImg.addActionListener(this::saveImage);
     }
-
-    // Placeholder methods for game actions
 
 
     private void saveGame(ActionEvent actionEvent) {
-        // Presupunem că există o metodă în DrawingPanel care returnează un obiect GameState actual.
         GameState gameState = frame.canvas.getCurrentGameState();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to save");
