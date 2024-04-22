@@ -11,8 +11,7 @@ public class Bag {
         tiles = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             int num1 = (int) (Math.random() * 10) + 1;
-            int num2 = (int) (Math.random() * 10) + 1;
-            tiles.add(new Tile(num1, num2));
+            tiles.add(new Tile(num1));
         }
         Collections.shuffle(tiles);
     }
@@ -26,5 +25,9 @@ public class Bag {
             extracted.add(tiles.remove(0));
         }
         return extracted;
+    }
+
+    public boolean isEmpty() {
+        return tiles.isEmpty();
     }
 }

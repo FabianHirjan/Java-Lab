@@ -1,50 +1,69 @@
 package org.example;
 
-import java.util.List;
+import java.util.*;
 
 public class Player implements Runnable {
-
-    private boolean running = true;
     private String name;
-    private Bag gameBag;
+    private Game game;
+    private boolean running;
+
+    private int score = 0;
+    private List<Tile> tiles = new ArrayList<Tile>();
 
     public Player(String name) {
         this.name = name;
-        this.running = true; // Adaugă această linie
     }
 
-
-    public void setGame(Bag gameBag) {
-        this.gameBag = gameBag;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
-    @Override
+    public int getScore() {
+        return score;
+    }
+
+    public List<Tile> getTiles() {
+        return tiles;
+    }
+
     public void run() {
+        running = true;
         while (running) {
-            List<Tile> myTiles = gameBag.extractTiles(7);
-
-            if (!myTiles.isEmpty()) {
-                System.out.println(name + " picked tiles: " + myTiles);
+            synchronized (game) {
                 try {
-                    Thread.sleep(1000);
+                    game.waitForTurn(this);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } else {
-                System.out.println(name + " couldn't pick tiles. Bag is empty.");
-                stop();
+
+                List<Tile> extractedTiles = game.getBag().extractTiles(1);
+                if (extractedTiles.isEmpty()) {
+                    running = false;
+                    break;
+                }
+                Tile extractedTile = extractedTiles.get(0);
+                tiles.add(extractedTile);
+                System.out.println(name + " extracted " + extractedTile + " from the bag");
+
+                if (extractedTile.getValue1() == extractedTile.getValue2()) {
+                    System.out.println(name + " extracted a double tile!");
+                    score += 1;
+                }
+                game.playerFinished(this);
+            }
+
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
 
-    public void start() {
-        running = true;
-        new Thread(this).start();
-    }
 
 
-    public void stop() {
-        running = false;
+    public String getName() {
+        return name;
     }
 }
