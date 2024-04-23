@@ -1,3 +1,4 @@
+// Player.java
 package org.example;
 
 import java.util.ArrayList;
@@ -20,12 +21,10 @@ public class Player implements Runnable {
     public void run() {
         try {
             while (true) {
-                long startTime = System.currentTimeMillis();
                 Token token = bag.removeToken();
-                if (token == null) break; // stop when the bag is empty
-                long extractionTime = System.currentTimeMillis() - startTime;
+                if (token == null) break;
+                System.out.println(name + " extracted: " + token);
                 addTokenToSequence(token);
-                System.out.println(name + " extracted a token: (" + token.first + ", " + token.second + ") in " + extractionTime + " ms");
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

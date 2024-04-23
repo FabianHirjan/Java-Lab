@@ -1,3 +1,4 @@
+// Game.java
 package org.example;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ public class Game {
     private final List<Player> players;
     private final List<Thread> playerThreads;
     private final Bag bag;
-    private final int n; // number of tokens
+    private final int n;
 
     public Game(int n, int playersCount) {
         this.n = n;
@@ -32,13 +33,15 @@ public class Game {
         });
     }
 
-    public void stop() throws InterruptedException {
+    public void stop() {
+        bag.endGame();
         for (Thread thread : playerThreads) {
-            thread.join();
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
-
-        Player winner = determineWinner();
-        System.out.println("The winner is " + winner.getName() + " with a score of " + winner.getMaxSequenceLength());
     }
 
     public Player determineWinner() {

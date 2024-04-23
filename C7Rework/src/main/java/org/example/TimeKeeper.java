@@ -1,3 +1,4 @@
+
 package org.example;
 
 public class TimeKeeper implements Runnable {
@@ -15,15 +16,8 @@ public class TimeKeeper implements Runnable {
     public void run() {
         while (true) {
             long runningTime = System.currentTimeMillis() - startTime;
-            System.out.println("Running time: " + runningTime + " ms");
-
             if (runningTime > timeLimit) {
-                System.out.println("Time limit exceeded. Stopping the game.");
-                try {
-                    game.stop();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                game.stop();
                 break;
             }
 
