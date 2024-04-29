@@ -1,45 +1,47 @@
 package org.example;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
+    private static final HikariDataSource dataSource;
+    // Configurațiile HikariCP
+    static {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/books");
+        config.setUsername("postgres");
+        config.setPassword("password");
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/books";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "password";
-    private static Connection connection = null;
+        // Configurație suplimentară a pool-ului (opțională)
+        config.setMinimumIdle(5);
+        config.setMaximumPoolSize(20);
+        config.setConnectionTimeout(30000); // 30 de secunde
 
-
-    public static Connection getConnection() {
-        return connection;
+        dataSource = new HikariDataSource(config);
     }
 
-    public static void createConnection() {
-        try {
-            connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            connection.setAutoCommit(false);
-            System.out.printf("Connected to database %s as user %s%n", URL, USER);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public static Connection getConnection() throws SQLException {
+        return dataSource.getConnection();
     }
 
-    public static void closeConnection() {
-        try {
-            if (connection != null) {
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
                 connection.close();
-                System.out.println("Connection closed.");
+            } catch (SQLException e) {
+                // Tratare eroare închidere conexiune
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 
     public static void commit() {
-        try {
+        try (Connection connection = getConnection()) {
             if (connection != null) {
+                connection.setAutoCommit(false); // Disable auto-commit
                 connection.commit();
                 System.out.println("Transaction committed.");
             }
@@ -49,13 +51,21 @@ public class Database {
     }
 
     public static void rollback() {
-        try {
+        try (Connection connection = getConnection()) {
             if (connection != null) {
+                connection.setAutoCommit(false); // Disable auto-commit
                 connection.rollback();
                 System.out.println("Transaction rolled back.");
             }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to rollback transaction.", e);
+        }
+    }
+
+
+    public static void closeDataSource() {
+        if (dataSource != null) {
+            dataSource.close();
         }
     }
 }

@@ -2,13 +2,19 @@ package org.example;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuthorDao {
-    public void create(String name) throws SQLException {
-        try (PreparedStatement statement = Database.getConnection().prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
+    public Author create(String name) throws SQLException {
+        String sql = "INSERT INTO authors (name) VALUES (?) RETURNING id, name;";
+        try (PreparedStatement statement = Database.getConnection().prepareStatement(sql)) {
             statement.setString(1, name);
-            statement.executeUpdate();
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Author(resultSet.getInt("id"), resultSet.getString("name"));
+            }
+            return null; // or throw an exception if you prefer
         }
     }
 
@@ -27,12 +33,15 @@ public class AuthorDao {
         }
     }
 
-    public void findByName(String name) {
+    public Author findByName(String name) throws SQLException {
+        Author author = null;
         try (PreparedStatement statement = Database.getConnection().prepareStatement("SELECT * FROM authors WHERE name = ?")) {
             statement.setString(1, name);
-            statement.executeQuery();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                author = new Author(resultSet.getInt("id"), resultSet.getString("name"));
+            }
         }
+        return author;
     }
 }

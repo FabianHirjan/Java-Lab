@@ -6,15 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BookDao {
-    public void create(int year, String title, Integer author, Integer genre) throws SQLException {
+    public void create(Book book) throws SQLException {
         try (PreparedStatement statement = Database.getConnection().prepareStatement("INSERT INTO books (year, title, author_id, genre_id) VALUES (?, ?, ?, ?)")) {
-            statement.setInt(1, year);
-            statement.setString(2, title);
-            statement.setInt(3, author);
-            statement.setInt(4, genre);
+            statement.setInt(1, book.getYear());
+            statement.setString(2, book.getTitle());
+            statement.setInt(3, book.getAuthor().getId());
+            statement.setInt(4, book.getGenre().getId());
             statement.executeUpdate();
+            System.out.println("Book + " + book.getTitle() + " added to the database");
         }
     }
+
 
     public void showAll() {
         try (PreparedStatement statement = Database.getConnection().prepareStatement("SELECT * FROM books")) {
