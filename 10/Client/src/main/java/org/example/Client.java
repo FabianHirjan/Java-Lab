@@ -26,7 +26,7 @@ public class Client {
                 BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in))
         ) {
             while (true) {
-                System.out.println("Type a message to send to the server, or 'exit' to quit:");
+                System.out.println("Type a message to send to the server, or 'stop' to quit:");
                 String userInput = keyboard.readLine();
 
 
