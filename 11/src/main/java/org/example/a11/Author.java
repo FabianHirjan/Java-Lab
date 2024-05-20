@@ -1,14 +1,16 @@
-package org.example;
+package org.example.a11;
 
 
-public class Genre {
+
+
+public class Author {
     private int id;
     private String name;
 
     // Constructors
-    public Genre() {}
+    public Author() {}
 
-    public Genre(int id, String name) {
+    public Author(int id, String name) {
         this.id = id;
         this.name = name;
     }

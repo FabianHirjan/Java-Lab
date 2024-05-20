@@ -26,14 +26,24 @@ public class Client {
                 BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in))
         ) {
             while (true) {
-                System.out.println("Type a message to send to the server, or 'stop' to quit:");
+                String serverMessage = receiveFromServer(in);
+                if (serverMessage.startsWith("Game started!")) {
+                    System.out.println(serverMessage);
+                    break;
+                }
+            }
+
+            while (true) {
+                System.out.println("Type your move, or 'stop' to quit:");
                 String userInput = keyboard.readLine();
-
-
                 sendToServer(out, userInput);
 
                 String response = receiveFromServer(in);
                 System.out.println("Response from server: " + response);
+
+                if (userInput.equals("stop")) {
+                    break;
+                }
             }
         } catch (IOException e) {
             System.err.println("An error occurred: " + e.getMessage());
