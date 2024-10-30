@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"Client"},{"p":"<Unnamed>","l":"Client.ClientType"},{"p":"<Unnamed>","l":"Depot"},{"p":"<Unnamed>","l":"Drone"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"Problem"},{"p":"<Unnamed>","l":"Simulator"},{"p":"<Unnamed>","l":"Truck"}];updateSearchResults();
